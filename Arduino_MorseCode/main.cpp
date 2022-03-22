@@ -15,7 +15,9 @@ void tone(int port, int pitch, int duration){}
 
 void noTone(int port){}
 
-//plugin everything below this into arduino code
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Paste everything below this into Arduino code
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const int SHORT = 100;
 const int LONG = 400;
@@ -93,7 +95,7 @@ void setup()
 
 void loop()
 {
-    morse("morse");
+    morse("test");
 }
 
 int main(){

@@ -24,9 +24,14 @@ const int LONG = 400;
 const int CHAR_WAIT = 100;
 const int LETTER_WAIT = 500;
 const int WORD_WAIT = 800;
+const int MAP_SIZE = 26;
+const int MAX_MORSE_SIZE = 5;
+const int LED_PORT = 13;
+const int SOUND_PORT = 8;
+const int PITCH = 440;
 
 void morse(char s[]){
-    char map[26][2][5] = {
+    char map[MAP_SIZE][2][MAX_MORSE_SIZE] = {
         {"a", ".-"},
         {"b", "-..."},
         {"c", "-.-."},
@@ -59,28 +64,27 @@ void morse(char s[]){
     for(int i = 0; s[i] != '\0'; i++){
         char c = s[i];
         //for each letter, consult map
-        for(int j = 0; j < 26; j++){
+        for(int j = 0; j < MAP_SIZE; j++){
             if(c == map[j][0][0]){
                 //for each letter in the morse code, shine appropriately
                 for(int k = 0; map[j][1][k] != '\0'; k++){
-                    digitalWrite(13, HIGH);
+                    digitalWrite(LED_PORT, HIGH);
                     if(map[j][1][k] == '.'){
-                        cout << ".";
-                        tone(8, 440, SHORT);
+//                        cout << ".";
+                        tone(SOUND_PORT, PITCH, SHORT);
                         delay(SHORT);
                     }
                     else{
-                        cout << "-";
-                        tone(8, 440, LONG);
+//                        cout << "-";
+                        tone(SOUND_PORT, PITCH, LONG);
                         delay(LONG);
                     }
-                    digitalWrite(13, LOW);
-                    noTone(0);
+                    digitalWrite(LED_PORT, LOW);
                     delay(CHAR_WAIT);
                 }
             }
         }
-        cout << " ";
+//        cout << " ";
         delay(LETTER_WAIT);
     }
     delay(WORD_WAIT);
@@ -89,8 +93,8 @@ void morse(char s[]){
 
 void setup()
 {
-    pinMode(13, OUTPUT);
-    pinMode(8, OUTPUT);
+    pinMode(LED_PORT, OUTPUT);
+    pinMode(SOUND_PORT, OUTPUT);
 }
 
 void loop()

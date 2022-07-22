@@ -70,12 +70,12 @@ void morse(char s[]){
                 for(int k = 0; map[j][1][k] != '\0'; k++){
                     digitalWrite(LED_PORT, HIGH);
                     if(map[j][1][k] == '.'){
-//                        cout << ".";
+                        // cout << ".";
                         tone(SOUND_PORT, PITCH, SHORT);
                         delay(SHORT);
                     }
                     else{
-//                        cout << "-";
+                        //cout << "-";
                         tone(SOUND_PORT, PITCH, LONG);
                         delay(LONG);
                     }
@@ -84,21 +84,19 @@ void morse(char s[]){
                 }
             }
         }
-//        cout << " ";
+        //cout << " ";
         delay(LETTER_WAIT);
     }
     delay(WORD_WAIT);
 
 }
 
-void setup()
-{
+void setup(){
     pinMode(LED_PORT, OUTPUT);
     pinMode(SOUND_PORT, OUTPUT);
 }
 
-void loop()
-{
+void loop(){
     morse("testing");
 }
 
